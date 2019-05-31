@@ -1,13 +1,14 @@
 package MyMap;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MapImplementation<K,V> implements MyMap<K,V>{
     private ArrayList<Pair<K,V>> map;
     private Pair<K,V> mapElement;
     
     MapImplementation(){
-        this.map = new ArrayList<>();
+        map = new ArrayList<>();
     }
     
     @Override
@@ -17,28 +18,40 @@ public class MapImplementation<K,V> implements MyMap<K,V>{
     }
 
     @Override
-    public Object get(K key) {
-        for(Pair element: this.map){
+    public ArrayList<Pair<K,V>> get(K key) {
+        ArrayList<Pair<K,V>> matchingKeyElements = new ArrayList<>();
+        for(Pair element: map){
             if(element.getKey().equals(key)){
-                return element.getValue();
+                matchingKeyElements.add(element);
             }
         }
-        return null;
+        if(!matchingKeyElements.isEmpty()){
+            return matchingKeyElements;
+        }else{
+            return null;
+        }
     }
 
     @Override
     public void remove(K key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Iterator<Pair<K, V>> iterator = map.iterator();
+        while(iterator.hasNext()){
+            Pair<K,V> element = iterator.next();
+            
+            if(element.getKey().equals(key)){
+               iterator.remove();
+            }
+        }
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return map.isEmpty();
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return map.size();
     }
 
     
