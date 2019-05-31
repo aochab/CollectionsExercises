@@ -25,7 +25,7 @@ public class MapImplementation<K,V> implements MyMap<K,V>{
                 matchingKeyElements.add(element);
             }
         }
-        if(!matchingKeyElements.isEmpty()){
+        if(!matchingKeyElements.isEmpgit coty()){
             return matchingKeyElements;
         }else{
             return null;
